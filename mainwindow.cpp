@@ -8,9 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     QVector<Task> tasks = {
-        Task(1, "Finish project", "2024-09-30", "Alice, Bob", "open"),
-        Task(2, "Prepare meeting", "2024-10-05", "Charlie", "open"),
-        Task(3, "Write report", "2024-10-15", "Alice, Eve", "closed")
+        Task(1,"Finsh Homework", Date(2024,12,24), "LK", "LOW")
     };
 
     // Erstelle ein neues Modell und setze die Aufgabenliste

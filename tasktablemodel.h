@@ -48,13 +48,13 @@ public:
         // Gibt die Daten basierend auf der Spalte zurück
         switch (index.column()) {
         case 0:
-            return task.id;  // Spalte 0: Die ID der Aufgabe
+            return QString::fromStdString(std::to_string(task.getId()));   // Spalte 0: Die ID der Aufgabe
         case 1:
-            return QString::fromStdString(task.description);  // Spalte 1: Die Beschreibung der Aufgabe
+            return QString::fromStdString(task.getDescription());  // Spalte 1: Die Beschreibung der Aufgabe
         case 2:
-            return QString::fromStdString(task.due);  // Spalte 2: Das Fälligkeitsdatum der Aufgabe
+            return QString::fromStdString("42");  // Spalte 2: Das Fälligkeitsdatum der Aufgabe
         case 3:
-            return QString::fromStdString(task.assignee);  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
+            return QString::fromStdString("42");  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
         default:
             return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
         }

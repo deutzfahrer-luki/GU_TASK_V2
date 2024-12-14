@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     TaskTableModel *model = new TaskTableModel(this);
     model->setTasks(tasks);
 
+    tasks.append(Task(4, "Write report", "2024-10-15", "Alice, Eve", "closed"));
+    model->setTasks(tasks);
+
     ui->setupUi(this);
 
     ui->tableView->setModel(model);

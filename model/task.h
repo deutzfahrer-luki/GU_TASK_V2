@@ -8,8 +8,8 @@
 class Task
 {
 public:
-    Task(int id, const std::string& description, const Date& birthday, const std::string& assignee, const std::string& state)
-        : id(id), description(description), birthday(&birthday), assignee(assignee), state(state) {}
+    Task(int id, const std::string& description, const Date& due, const std::string& assignee, const std::string& state)
+        : id(id), description(description), due(due), assignee(assignee), state(state) {}
 
     void setDone() {
         if (state != "done") {
@@ -18,14 +18,14 @@ public:
         }
     }
 
-    int getId() const { return this->id; }
-    std::string getDescription() const { return this->description; }
-    std::string getAssignee() const { return this->assignee; }
-    std::string getState() const { return this->state; }
-    const Date* getBirthday() const { return this->birthday; }
+    int getId() const { return id; }
+    std::string getDescription() const { return description; }
+    std::string getAssignee() const { return assignee; }
+    std::string getState() const { return state; }
+    std::string getDue() const { return static_cast<std::string>(due); }
 
 private:
-    const Date* birthday; // Verwaltet keinen Speicher, nur ein Verweis
+    Date due; // Direktes Date-Objekt
     int id;
     std::string description;
     std::string assignee;

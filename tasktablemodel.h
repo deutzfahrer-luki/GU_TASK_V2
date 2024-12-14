@@ -4,8 +4,7 @@
 
 #include <QAbstractTableModel>
 #include "model/task.h"
-#include "util/date.h"
-
+#include "model/user.h"
 
 // Die TaskTableModel-Klasse stellt die Aufgaben-Daten als Tabelle dar.
 // Sie erbt von QAbstractTableModel, was bedeutet, dass wir die Datenstruktur und
@@ -46,7 +45,6 @@ public:
 
         // Holt die Aufgabe für die aktuelle Zeile
         const Task &task = m_tasks[index.row()];
-        Date Datum(2024,12,24);
 
         // Gibt die Daten basierend auf der Spalte zurück
         switch (index.column()) {
@@ -57,7 +55,7 @@ public:
         case 2:
             return QString::fromStdString(task.getDue());  // Spalte 2: Das Fälligkeitsdatum der Aufgabe
         case 3:
-            return QString::fromStdString("42");  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
+            return QString::fromStdString(task.getAssignee());  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
         default:
             return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
         }

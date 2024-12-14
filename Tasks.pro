@@ -12,11 +12,13 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model/task.cpp \
+    model/user.cpp \
     util/date.cpp
 
 HEADERS += \
     mainwindow.h \
     model/task.h \
+    model/user.h \
     tasktablemodel.h \
     util/date.h
 

@@ -16,6 +16,7 @@ SOURCES += \
     util/date.cpp
 
 HEADERS += \
+    model/RelativeDue.h \
     view/mainwindow.h \
     model/task.h \
     model/user.h \

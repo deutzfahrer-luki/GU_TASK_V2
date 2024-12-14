@@ -15,7 +15,6 @@ public:
     void setDone() {
         if (state != "done") {
             state = "done";
-            std::cout << "Task " << id << " marked as done.\n";
         }
     }
 

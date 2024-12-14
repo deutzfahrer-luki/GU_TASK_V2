@@ -10,20 +10,20 @@ CONFIG += c++20
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
+    view/mainwindow.cpp \
     model/task.cpp \
     model/user.cpp \
     util/date.cpp
 
 HEADERS += \
-    mainwindow.h \
+    view/mainwindow.h \
     model/task.h \
     model/user.h \
     tasktablemodel.h \
     util/date.h
 
 FORMS += \
-    mainwindow.ui
+    view/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

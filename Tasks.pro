@@ -10,11 +10,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    model/task.cpp
 
 HEADERS += \
-    Task.h \
     mainwindow.h \
+    model/task.h \
     tasktablemodel.h
 
 FORMS += \

@@ -3,7 +3,7 @@
 #define TASKTABLEMODEL_H
 
 #include <QAbstractTableModel>
-#include "Task.h"
+#include "model/task.h"
 
 // Die TaskTableModel-Klasse stellt die Aufgaben-Daten als Tabelle dar.
 // Sie erbt von QAbstractTableModel, was bedeutet, dass wir die Datenstruktur und

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "tasktablemodel.h"
-#include "Task.h"
+#include "model/task.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,9 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Erstelle ein neues Modell und setze die Aufgabenliste
     TaskTableModel *model = new TaskTableModel(this);
-    model->setTasks(tasks);
-
-    tasks.append(Task(4, "Write report", "2024-10-15", "Alice, Eve", "closed"));
     model->setTasks(tasks);
 
     ui->setupUi(this);

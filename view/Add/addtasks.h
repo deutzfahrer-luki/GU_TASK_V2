@@ -19,6 +19,7 @@ public:
 private:
     Ui::AddTasks *ui;
     void initializeStateDropdown(QComboBox* comboBox);
+    void initializeUserDropdown(QComboBox* comboBox);
 };
 
 #endif // ADDTASKS_H

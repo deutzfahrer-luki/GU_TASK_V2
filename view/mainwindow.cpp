@@ -3,6 +3,7 @@
 #include "tasktablemodel.h"
 #include "model/task.h"
 #include "data/dataTask.h"
+#include "view/Add/addtasks.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {

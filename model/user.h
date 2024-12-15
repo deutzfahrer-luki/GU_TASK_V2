@@ -6,7 +6,8 @@
 
 class User {
 public:
-    User(const std::string& vorname, const std::string& nachname, const Date& geburtsdatum);
+    User(const std::string& vorname, const std::string& nachname, const Date& geburtsdatum)
+        : vorname(vorname), nachname(nachname), birthday(geburtsdatum) {}
 
     void print() const;
     void printDate() const;

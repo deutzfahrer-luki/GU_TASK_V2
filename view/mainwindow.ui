@@ -27,7 +27,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTableView" name="tableView">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -53,6 +53,22 @@
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QToolButton" name="AddButton">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
      </widget>
     </item>
    </layout>

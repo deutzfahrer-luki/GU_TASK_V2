@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "title": "Finish Homework",
+        "dueDate": "2024-12-24",
+        "user": {
+            "firstName": "Lukas",
+            "lastName": "Koppl",
+            "birthDate": "2007-09-22"
+        },
+        "state": "Irrelevant"
+    },
+    {
+        "id": 2,
+        "title": "Finish School",
+        "dueDate": "2030-12-24",
+        "user": {
+            "firstName": "Lukas",
+            "lastName": "Koppl",
+            "birthDate": "2007-09-22"
+        },
+        "state": "Irrelevant"
+    }
+]

@@ -9,6 +9,7 @@ CONFIG += c++20
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    data/jsonloader.cpp \
     main.cpp \
     view/Add/addtasks.cpp \
     view/mainwindow.cpp \
@@ -17,6 +18,8 @@ SOURCES += \
     util/date.cpp
 
 HEADERS += \
+    Controller/taskmanager.h \
+    data/jsonloader.h \
     model/RelativeDue.h \
     view/Add/addtasks.h \
     view/mainwindow.h \
@@ -33,3 +36,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    data/tasks

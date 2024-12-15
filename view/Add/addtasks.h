@@ -2,6 +2,7 @@
 #define ADDTASKS_H
 
 #include <QDialog>
+#include <QComboBox>
 
 namespace Ui {
 class AddTasks;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::AddTasks *ui;
+    void initializeStateDropdown(QComboBox* comboBox);
 };
 
 #endif // ADDTASKS_H

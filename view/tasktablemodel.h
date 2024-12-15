@@ -1,6 +1,8 @@
 // TaskTableModel.h
 #ifndef TASKTABLEMODEL_H
 #define TASKTABLEMODEL_H
+#define COLUMN_COUNT 5
+
 
 #include <QAbstractTableModel>
 #include "model/task.h"
@@ -32,7 +34,7 @@ public:
     // Gibt die Anzahl der Spalten zurück. Wir haben vier Spalten (ID, Beschreibung, Fälligkeitsdatum, Zugewiesene).
     int columnCount(const QModelIndex &parent = QModelIndex()) const override {
         Q_UNUSED(parent);  // Parent wird wieder ignoriert.
-        return 4;  // 4 Spalten: ID, Beschreibung, Fälligkeitsdatum, Zugewiesene
+        return COLUMN_COUNT;
     }
 
     // Gibt die Daten für eine bestimmte Zelle zurück, basierend auf Zeile und Spalte.
@@ -55,6 +57,9 @@ public:
             return QString::fromStdString(task.getDue());  // Spalte 2: Das Fälligkeitsdatum der Aufgabe
         case 3:
             return QString::fromStdString(task.getAssignee());  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
+        case 4:
+            return QString::fromStdString(task.getStateByString());
+
         default:
             return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
         }

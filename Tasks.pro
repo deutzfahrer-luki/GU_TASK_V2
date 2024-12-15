@@ -20,7 +20,7 @@ HEADERS += \
     view/mainwindow.h \
     model/task.h \
     model/user.h \
-    tasktablemodel.h \
+    view/tasktablemodel.h \
     util/date.h
 
 FORMS += \

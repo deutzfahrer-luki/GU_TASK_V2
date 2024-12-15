@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
 
     ui->tableView->setModel(m_model);
+    connect(ui->AddTaskButton, &QPushButton::clicked, this, &MainWindow::AddTaskButton_clicked);
+
 }
 
 MainWindow::~MainWindow()
@@ -20,7 +22,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_AddTaskButton_clicked()
+void MainWindow::AddTaskButton_clicked()
 {
     AddTasks *addTasksDialog = new AddTasks(this);
     connect(addTasksDialog, &AddTasks::taskAdded, this, [this](const Task& task) {

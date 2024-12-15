@@ -17,7 +17,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_AddTaskButton_clicked();
+    void AddTaskButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -1,10 +1,7 @@
 #include "addtasks.h"
 #include "ui_addtasks.h"
 
-AddTasks::AddTasks(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::AddTasks)
-{
+AddTasks::AddTasks(QWidget *parent): QDialog(parent), ui(new Ui::AddTasks) {
     ui->setupUi(this);
     initializeStateDropdown(ui->comboBoxState);
     initializeUserDropdown(ui->comboBoxUser);
@@ -13,8 +10,7 @@ AddTasks::AddTasks(QWidget *parent)
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &AddTasks::reject);
 }
 
-AddTasks::~AddTasks()
-{
+AddTasks::~AddTasks() {
     delete ui;
 }
 

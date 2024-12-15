@@ -2,9 +2,9 @@
 
 // Define users and tasks here, initialized as needed
 QVector<User> users = {
-    User("--choose--", "", Date(1900, 1,1)),
-    User("Lukas", "Köppl", Date(2007,9,22)),
-    User("Simon", "Gunaka", Date(1900, 1,1)),
+    User(1,"--choose--", "", Date(1900, 1,1)),
+    User(2,"Lukas", "Köppl", Date(2007,9,22)),
+    User(3,"Simon", "Gunaka", Date(1900, 1,1)),
 };
 
 QVector<Task> tasks = {

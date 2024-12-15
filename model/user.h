@@ -6,8 +6,8 @@
 
 class User {
 public:
-    User(const std::string& vorname, const std::string& nachname, const Date& geburtsdatum)
-        : vorname(vorname), nachname(nachname), birthday(geburtsdatum) {}
+    User(int id, const std::string& vorname, const std::string& nachname, const Date& geburtsdatum)
+        : id(id), vorname(vorname), nachname(nachname), birthday(geburtsdatum) {}
 
     void print() const;
     void printDate() const;
@@ -24,6 +24,7 @@ public:
     void setBirthday(const Date& birthday) { this->birthday = birthday; }
 
 private:
+    int id;
     std::string vorname;
     std::string nachname;
     Date birthday;

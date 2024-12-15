@@ -2,14 +2,10 @@
 #include "ui_mainwindow.h"
 #include "tasktablemodel.h"
 #include "model/task.h"
+#include "data/dataTask.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    QVector<Task> tasks = {
-        Task(1,"Finsh Homework", Date(2024,12,24), User("Lukas", "Koppl", Date(2007,9,22)), RelativeDue::Irrelevant),
-        Task(2, "finish school", Date("2030-12-24"), User("Lukas", "Koppl", Date(2007,9,22)), RelativeDue::Irrelevant),
-    };
-
     // Erstelle ein neues Modell und setze die Aufgabenliste
     TaskTableModel *model = new TaskTableModel(this);
     model->setTasks(tasks);

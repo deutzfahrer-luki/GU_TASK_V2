@@ -19,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     Controller/taskmanager.h \
+    data/dataTask.h \
     data/jsonloader.h \
     model/RelativeDue.h \
     view/Add/addtasks.h \

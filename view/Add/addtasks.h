@@ -25,6 +25,11 @@ public:
     explicit AddTasks(QWidget *parent = nullptr);
     ~AddTasks();
 
+    QString getDescription() const;
+    QDate getDate() const;
+    QString getSelectedUser() const;
+    QString getSelectedState() const;
+
 public slots:
     void addTask();
 

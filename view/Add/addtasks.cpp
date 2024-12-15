@@ -19,6 +19,25 @@ AddTasks::~AddTasks()
 }
 
 
+/*---------- Getter from Ui ----------*/
+QString AddTasks::getDescription() const {
+    return ui->lineEditDesc->text(); // Beschreibung aus dem QLineEdit
+}
+
+QDate AddTasks::getDate() const {
+    return ui->dateEdit->date(); // Datum aus dem QDateEdit
+}
+
+QString AddTasks::getSelectedUser() const {
+    return ui->comboBoxUser->currentText(); // Ausgewählter Benutzer aus der QComboBox
+}
+
+QString AddTasks::getSelectedState() const {
+    return ui->comboBoxState->currentText(); // Ausgewählter Status aus der QComboBox
+}
+
+
+/*---------- Setter for Ui ComboBoxes----------*/
 void AddTasks::initializeStateDropdown(QComboBox* comboBox) {
     for (int i = static_cast<int>(RelativeDue::Irrelevant); i <= static_cast<int>(RelativeDue::Later); ++i) {
         RelativeDue state = static_cast<RelativeDue>(i);
@@ -32,8 +51,16 @@ void AddTasks::initializeUserDropdown(QComboBox* comboBox) {
     }
 }
 
+
+/*---------- add Task ----------*/
 void AddTasks::addTask() {
-    Task newTask(1, "Hallo", Date("224-12-24"), users[1], RelativeDue::Irrelevant);
+    QString description = getDescription();
+    QDate date = getDate();
+    QString user = getSelectedUser();
+    QString state = getSelectedState();
+
+    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[1], relativeDueFromString(state.toStdString()));
+
     emit taskAdded(newTask);
     accept();
 }

@@ -2,6 +2,7 @@
 #define RELATIVEDUE_H
 
 #include <string>
+#include <stdexcept>
 
 enum class RelativeDue
 {
@@ -14,7 +15,6 @@ enum class RelativeDue
     Later
 };
 
-// Helper-Funktion zur Umwandlung von RelativeDue in einen String
 inline std::string relativeDueToString(RelativeDue state) {
     switch (state) {
     case RelativeDue::Irrelevant: return "Irrelevant";
@@ -26,6 +26,18 @@ inline std::string relativeDueToString(RelativeDue state) {
     case RelativeDue::Later:      return "Later";
     default:                      return "Unknown";
     }
+}
+
+inline RelativeDue relativeDueFromString(const std::string& state) {
+    if (state == "Irrelevant") return RelativeDue::Irrelevant;
+    if (state == "Overdue")    return RelativeDue::Overdue;
+    if (state == "Today")      return RelativeDue::Today;
+    if (state == "Tomorrow")   return RelativeDue::Tomorrow;
+    if (state == "ThisWeek")   return RelativeDue::ThisWeek;
+    if (state == "ThisMonth")  return RelativeDue::ThisMonth;
+    if (state == "Later")      return RelativeDue::Later;
+
+    throw std::invalid_argument("Unrecognized RelativeDue string: " + state);
 }
 
 #endif // RELATIVEDUE_H

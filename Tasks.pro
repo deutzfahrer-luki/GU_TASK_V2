@@ -10,6 +10,7 @@ CONFIG += c++20
 
 SOURCES += \
     main.cpp \
+    view/Add/addtasks.cpp \
     view/mainwindow.cpp \
     model/task.cpp \
     model/user.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     model/RelativeDue.h \
+    view/Add/addtasks.h \
     view/mainwindow.h \
     model/task.h \
     model/user.h \
@@ -24,6 +26,7 @@ HEADERS += \
     util/date.h
 
 FORMS += \
+    view/Add/addtasks.ui \
     view/mainwindow.ui
 
 # Default rules for deployment.

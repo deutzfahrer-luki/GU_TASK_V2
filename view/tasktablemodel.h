@@ -77,7 +77,9 @@ public:
             case 2:
                 return QString("Due Date");  // Überschrift für die dritte Spalte
             case 3:
-                return QString("Assignees");  // Überschrift für die vierte Spalte
+                return QString("Assignees");  // Überschrift für die vierte
+            case 4:
+                return QString("State");
             default:
                 return QVariant();  // Für ungültige Spalten keine Überschrift zurückgeben
             }

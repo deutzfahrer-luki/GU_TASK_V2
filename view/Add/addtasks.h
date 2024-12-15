@@ -4,6 +4,15 @@
 #include <QDialog>
 #include <QComboBox>
 
+#include <QPushButton>
+#include <QDialogButtonBox>
+
+#include "data/dataTask.h"
+#include "model/RelativeDue.h"
+#include "model/task.h"
+#include "model/user.h"
+
+
 namespace Ui {
 class AddTasks;
 }
@@ -15,6 +24,12 @@ class AddTasks : public QDialog
 public:
     explicit AddTasks(QWidget *parent = nullptr);
     ~AddTasks();
+
+public slots:
+    void addTask();
+
+signals:
+    void taskAdded(const Task& task); // Neues Signal
 
 private:
     Ui::AddTasks *ui;

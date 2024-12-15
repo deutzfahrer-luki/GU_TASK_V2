@@ -7,13 +7,12 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    // Erstelle ein neues Modell und setze die Aufgabenliste
-    TaskTableModel *model = new TaskTableModel(this);
-    model->setTasks(tasks);
+    m_model = new TaskTableModel(this);
+    m_model->setTasks(tasks);
 
     ui->setupUi(this);
 
-    ui->tableView->setModel(model);
+    ui->tableView->setModel(m_model);
 }
 
 MainWindow::~MainWindow()
@@ -24,5 +23,9 @@ MainWindow::~MainWindow()
 void MainWindow::on_AddTaskButton_clicked()
 {
     AddTasks *addTasksDialog = new AddTasks(this);
+    connect(addTasksDialog, &AddTasks::taskAdded, this, [this](const Task& task) {
+        tasks.append(task);
+        m_model->setTasks(tasks);
+    });
     addTasksDialog->exec();
 }

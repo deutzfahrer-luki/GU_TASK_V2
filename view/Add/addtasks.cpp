@@ -1,10 +1,6 @@
 #include "addtasks.h"
 #include "ui_addtasks.h"
 
-#include "data/dataTask.h"
-#include "model/RelativeDue.h"
-#include "model/user.h"
-
 AddTasks::AddTasks(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddTasks)
@@ -12,6 +8,9 @@ AddTasks::AddTasks(QWidget *parent)
     ui->setupUi(this);
     initializeStateDropdown(ui->comboBoxState);
     initializeUserDropdown(ui->comboBoxUser);
+
+    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &AddTasks::addTask);
+    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &AddTasks::reject);
 }
 
 AddTasks::~AddTasks()
@@ -32,4 +31,11 @@ void AddTasks::initializeUserDropdown(QComboBox* comboBox) {
         comboBox->addItem(QString::fromStdString(user.getFullName()));
     }
 }
+
+void AddTasks::addTask() {
+    Task newTask(1, "Hallo", Date("224-12-24"), users[1], RelativeDue::Irrelevant);
+    emit taskAdded(newTask);
+    accept();
+}
+
 

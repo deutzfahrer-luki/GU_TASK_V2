@@ -3,7 +3,8 @@
 #include "tasktablemodel.h"
 #include "model/task.h"
 #include "data/dataTask.h"
-#include "view/Add/addtasks.h"
+#include "view/AddTask/addtasks.h"
+#include "view/AddUser/addusers.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -14,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     ui->tableView->setModel(m_model);
     connect(ui->AddTaskButton, &QPushButton::clicked, this, &MainWindow::AddTaskButton_clicked);
+    connect(ui->AddUserButton, &QPushButton::clicked, this, &MainWindow::AddUserButton_clicked);
+
 
 }
 
@@ -31,3 +34,10 @@ void MainWindow::AddTaskButton_clicked()
     });
     addTasksDialog->exec();
 }
+
+void MainWindow::AddUserButton_clicked()
+{
+    AddUsers *addUsersDialog = new AddUsers(this);
+    addUsersDialog->exec();
+}
+

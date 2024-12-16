@@ -12,7 +12,8 @@ SOURCES += \
     data/dataTask.cpp \
     data/jsonloader.cpp \
     main.cpp \
-    view/Add/addtasks.cpp \
+    view/AddTask/addtasks.cpp \
+    view/AddUser/addusers.cpp \
     view/mainwindow.cpp \
     util/date.cpp
 
@@ -21,7 +22,8 @@ HEADERS += \
     data/dataTask.h \
     data/jsonloader.h \
     model/RelativeDue.h \
-    view/Add/addtasks.h \
+    view/AddTask/addtasks.h \
+    view/AddUser/addusers.h \
     view/mainwindow.h \
     model/task.h \
     model/user.h \
@@ -29,7 +31,8 @@ HEADERS += \
     util/date.h
 
 FORMS += \
-    view/Add/addtasks.ui \
+    view/AddTask/addtasks.ui \
+    view/AddUser/addusers.ui \
     view/mainwindow.ui
 
 # Default rules for deployment.

@@ -3,7 +3,7 @@
 #define TASKTABLEMODEL_H
 #define COLUMN_COUNT 5
 
-
+#include <QTableView>
 #include <QAbstractTableModel>
 #include "model/task.h"
 #include "model/RelativeDue.h"
@@ -86,6 +86,10 @@ public:
             }
         }
         return QVariant();  // Für andere Rollen oder Ausrichtungen keine Überschrift zurückgeben
+    }
+
+    int getRow() {
+        return 42;
     }
 
 private:

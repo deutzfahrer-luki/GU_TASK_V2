@@ -18,6 +18,8 @@ public:
     std::chrono::seconds operator-(const Date& other) const;
     operator std::string() const;
 
+    void printout();
+
 private:
     std::chrono::system_clock::time_point timepoint;
 

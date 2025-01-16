@@ -1,7 +1,7 @@
 // TaskTableModel.h
 #ifndef TASKTABLEMODEL_H
 #define TASKTABLEMODEL_H
-#define COLUMN_COUNT 5
+#define COLUMN_COUNT 6
 
 #include <QTableView>
 #include <QAbstractTableModel>
@@ -60,6 +60,8 @@ public:
             return QString::fromStdString(task.getAssignee());  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
         case 4:
             return QString::fromStdString(task.getStateByString());
+        case 5:
+            return QString::fromStdString("TODOs");
 
         default:
             return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
@@ -81,6 +83,8 @@ public:
                 return QString("Assignees");  // Überschrift für die vierte
             case 4:
                 return QString("State");
+            case 5:
+                return QString("Relative Due");
             default:
                 return QVariant();  // Für ungültige Spalten keine Überschrift zurückgeben
             }

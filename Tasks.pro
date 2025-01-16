@@ -10,7 +10,6 @@ CONFIG += c++20
 
 SOURCES += \
     data/dataTask.cpp \
-    data/jsonloader.cpp \
     main.cpp \
     view/AddTask/addtasks.cpp \
     view/AddUser/addusers.cpp \

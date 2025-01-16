@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <util/date.h>
 
 enum class RelativeDue
 {
@@ -39,5 +40,16 @@ inline RelativeDue relativeDueFromString(const std::string& state) {
 
     throw std::invalid_argument("Unrecognized RelativeDue string: " + state);
 }
+
+/*
+std::string relativeDueToday(const Date& due)
+{
+    Date Today;
+    Today.;
+}
+*/
+
+
+
 
 #endif // RELATIVEDUE_H

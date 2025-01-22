@@ -72,7 +72,5 @@ void MainWindow::ChangeTask_clicked()
 
         ChangeTask *changeTask = new ChangeTask(this);
         changeTask->exec();
-
-        QMessageBox::information(this, "Erfolg", "Der Task wurde erfolgreich geändert.");
     }
 }

@@ -2,4 +2,4 @@ build/
 Controller/
 data/jsonloader.cpp
 data/jsonloader.h
-
+*.pro.user

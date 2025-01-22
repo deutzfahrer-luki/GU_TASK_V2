@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->tableView->setModel(m_model);
     connect(ui->AddTaskButton, &QPushButton::clicked, this, &MainWindow::AddTaskButton_clicked);
     connect(ui->AddUserButton, &QPushButton::clicked, this, &MainWindow::AddUserButton_clicked);
+    connect(ui->DeleteTaskButton, &QPushButton::clicked, this, &MainWindow::on_deleteTaskButton_clicked);
 }
 
 MainWindow::~MainWindow()
@@ -39,3 +40,19 @@ void MainWindow::AddUserButton_clicked()
     addUsersDialog->exec();
 }
 
+void MainWindow::on_deleteTaskButton_clicked() {
+    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
+
+    if (!selectionModel->hasSelection()) {
+        QMessageBox::warning(this, "Fehler", "Bitte wählen Sie eine Zeile aus, um sie zu löschen.");
+        return;
+    }
+
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (!selectedRows.isEmpty()) {
+        int rowToDelete = selectedRows.first().row();
+        tasks.removeAt(rowToDelete);
+        m_model->setTasks(tasks);
+        QMessageBox::information(this, "Erfolg", "Der Task wurde erfolgreich gelöscht.");
+    }
+}

@@ -8,12 +8,12 @@
 #include "model/task.h"
 #include "model/RelativeDue.h"
 
+
 // Die TaskTableModel-Klasse stellt die Aufgaben-Daten als Tabelle dar.
 // Sie erbt von QAbstractTableModel, was bedeutet, dass wir die Datenstruktur und
 // das Verhalten der Tabelle selbst definieren können.
 class TaskTableModel : public QAbstractTableModel {
     Q_OBJECT  // Qt-Makro für Klassen, die Qt-spezifische Funktionen wie Signale/Slots verwenden.
-
 public:
     // Konstruktor: Initialisiert das Modell, optional mit einem Eltern-Widget.
     explicit TaskTableModel(QObject *parent = nullptr)
@@ -40,33 +40,81 @@ public:
 
     // Gibt die Daten für eine bestimmte Zelle zurück, basierend auf Zeile und Spalte.
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override {
-        // Überprüft, ob der Index gültig ist und ob die Daten angezeigt werden sollen (DisplayRole).
-        if (!index.isValid() || role != Qt::DisplayRole) {
-            return QVariant();  // Keine Daten zurückgeben, wenn die Bedingung nicht erfüllt ist
+        // Überprüft, ob der Index gültig ist und ob die Rolle eine Anzeige-Rolle ist.
+        if (!index.isValid()) {
+            return QVariant();  // Keine Daten zurückgeben, wenn der Index ungültig ist
         }
 
         // Holt die Aufgabe für die aktuelle Zeile
         const Task &task = m_tasks[index.row()];
 
-        // Gibt die Daten basierend auf der Spalte zurück
-        switch (index.column()) {
-        case 0:
-            return QString::fromStdString(std::to_string(task.getId()));   // Spalte 0: Die ID der Aufgabe
-        case 1:
-            return QString::fromStdString(task.getDescription());  // Spalte 1: Die Beschreibung der Aufgabe
-        case 2:
-            return QString::fromStdString(task.getDue());  // Spalte 2: Das Fälligkeitsdatum der Aufgabe
-        case 3:
-            return QString::fromStdString(task.getAssignee());  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
-        case 4:
-            return QString::fromStdString(task.getStateByString());
-        case 5:
-            return QString::fromStdString("TODOs");
+        switch (role) {
+        case Qt::DisplayRole:
+            // Gibt die Daten basierend auf der Spalte zurück
+            switch (index.column()) {
+            case 0:
+                return QString::fromStdString(std::to_string(task.getId()));   // Spalte 0: Die ID der Aufgabe
+            case 1:
+                return QString::fromStdString(task.getDescription());  // Spalte 1: Die Beschreibung der Aufgabe
+            case 2:
+                return QString::fromStdString(task.getDue());  // Spalte 2: Das Fälligkeitsdatum der Aufgabe
+            case 3:
+                return QString::fromStdString(task.getAssignee());  // Spalte 3: Die zugewiesenen Personen als kommagetrennte Liste
+            case 4:
+                return QString::fromStdString(task.getStateByString());
+            case 5:
+                return QString::fromStdString(relativeDueToday(task.getDue()));  // Spalte 5: Relative Due
+            default:
+                return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
+            }
+
+        case Qt::BackgroundRole:  // Hintergrundfarbe
+            // Wenn wir in der letzten Spalte sind (Relative Due)
+            if (index.column() == 5) {
+                QString relativeDue = QString::fromStdString(relativeDueToday(task.getDue()));
+
+                // Setze die Hintergrundfarbe basierend auf dem Wert in der letzten Spalte
+                if (relativeDue == "Overdue") {
+                    return QBrush(Qt::red);  // Überfällig -> Rot
+                } else if (relativeDue == "Today") {
+                    return QBrush(Qt::green);  // Heute -> Grün
+                } else if (relativeDue == "Tomorrow") {
+                    return QBrush(Qt::yellow);  // Morgen -> Gelb
+                } else if (relativeDue == "ThisWeek") {
+                    return QBrush(Qt::cyan);  // Diese Woche -> Cyan
+                } else if (relativeDue == "ThisMonth") {
+                    return QBrush(Qt::blue);  // Diesen Monat -> Blau
+                } else {
+                    return QBrush(Qt::lightGray);  // Sonst -> Hellgrau
+                }
+            }
+            break;
+
+        case Qt::ForegroundRole:  // Textfarbe
+            // Wenn wir in der letzten Spalte sind (Relative Due)
+            if (index.column() == 5) {
+                QString relativeDue = QString::fromStdString(relativeDueToday(task.getDue()));
+
+                // Setze die Textfarbe basierend auf dem Wert in der letzten Spalte
+                if (relativeDue == "Overdue") {
+                    return QBrush(Qt::white);  // Überfällig -> Weiße Schrift
+                } else if (relativeDue == "Today") {
+                    return QBrush(Qt::black);  // Heute -> Schwarze Schrift
+                } else if (relativeDue == "Tomorrow") {
+                    return QBrush(Qt::black);  // Morgen -> Schwarze Schrift
+                } else {
+                    return QBrush(Qt::black);  // Sonst -> Schwarze Schrift
+                }
+            }
+            break;
 
         default:
-            return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
+            return QVariant();  // Für andere Rollen keine Daten zurückgeben
         }
+
+        return QVariant();  // Standard Rückgabewert
     }
+
 
     // Gibt die Überschriften für die Spalten zurück, z. B. "ID", "Beschreibung", etc.
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override {

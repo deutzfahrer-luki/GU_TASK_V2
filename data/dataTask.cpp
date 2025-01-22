@@ -11,3 +11,11 @@ QVector<Task> tasks = {
     Task(1,"Finish Homework", Date(2024,12,24), users[0], RelativeDue::Irrelevant),
     Task(2, "Finish School", Date("2030-12-24"), users[1], RelativeDue::Irrelevant),
 };
+
+
+void removeTask(uint8_t taskIdToDelete)
+{
+    auto it = std::remove_if(tasks.begin(), tasks.end(), [taskIdToDelete](const Task& task) {
+        return task.getId() == taskIdToDelete;
+    });
+}

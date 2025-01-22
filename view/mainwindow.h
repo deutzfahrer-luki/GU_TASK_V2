@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidget>
+#include <QMessageBox>
 #include "view/tasktablemodel.h"
 
 QT_BEGIN_NAMESPACE
@@ -19,6 +21,8 @@ public:
 private slots:
     void AddTaskButton_clicked();
     void AddUserButton_clicked();
+    void on_deleteTaskButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

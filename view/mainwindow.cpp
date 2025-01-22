@@ -5,6 +5,7 @@
 #include "data/dataTask.h"
 #include "view/AddTask/addtasks.h"
 #include "view/AddUser/addusers.h"
+#include "view/ChangeTask/changetask.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -16,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->tableView->setModel(m_model);
     connect(ui->AddTaskButton, &QPushButton::clicked, this, &MainWindow::AddTaskButton_clicked);
     connect(ui->AddUserButton, &QPushButton::clicked, this, &MainWindow::AddUserButton_clicked);
-    connect(ui->DeleteTaskButton, &QPushButton::clicked, this, &MainWindow::on_deleteTaskButton_clicked);
+    connect(ui->DeleteTaskButton, &QPushButton::clicked, this, &MainWindow::DeleteTask_clicked);
+    connect(ui->ChangeTaskButton, &QPushButton::clicked, this, &MainWindow::ChangeTask_clicked);
 }
 
 MainWindow::~MainWindow()
@@ -40,7 +42,7 @@ void MainWindow::AddUserButton_clicked()
     addUsersDialog->exec();
 }
 
-void MainWindow::on_deleteTaskButton_clicked() {
+void MainWindow::DeleteTask_clicked() {
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
 
     if (!selectionModel->hasSelection()) {
@@ -54,5 +56,23 @@ void MainWindow::on_deleteTaskButton_clicked() {
         tasks.removeAt(rowToDelete);
         m_model->setTasks(tasks);
         QMessageBox::information(this, "Erfolg", "Der Task wurde erfolgreich gelöscht.");
+    }
+}
+
+void MainWindow::ChangeTask_clicked()
+{
+    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
+    if (!selectionModel->hasSelection()) {
+        QMessageBox::warning(this, "Fehler", "Bitte wählen Sie eine Zeile aus, um sie zu ändern.");
+        return;
+    }
+    QModelIndexList selectedRows = selectionModel->selectedRows();
+    if (!selectedRows.isEmpty()) {
+        int rowToDelete = selectedRows.first().row();
+
+        ChangeTask *changeTask = new ChangeTask(this);
+        changeTask->exec();
+
+        QMessageBox::information(this, "Erfolg", "Der Task wurde erfolgreich geändert.");
     }
 }

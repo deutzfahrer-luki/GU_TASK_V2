@@ -13,7 +13,7 @@ SOURCES += \
     main.cpp \
     view/AddTask/addtasks.cpp \
     view/AddUser/addusers.cpp \
-    view/DeleteTask/deletetask.cpp \
+    view/ChangeTask/changetask.cpp \
     view/mainwindow.cpp \
     util/date.cpp
 
@@ -24,7 +24,7 @@ HEADERS += \
     model/RelativeDue.h \
     view/AddTask/addtasks.h \
     view/AddUser/addusers.h \
-    view/DeleteTask/deletetask.h \
+    view/ChangeTask/changetask.h \
     view/mainwindow.h \
     model/task.h \
     model/user.h \
@@ -34,7 +34,7 @@ HEADERS += \
 FORMS += \
     view/AddTask/addtasks.ui \
     view/AddUser/addusers.ui \
-    view/DeleteTask/deletetask.ui \
+    view/ChangeTask/changetask.ui \
     view/mainwindow.ui
 
 # Default rules for deployment.

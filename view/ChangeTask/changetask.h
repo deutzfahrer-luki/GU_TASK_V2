@@ -19,8 +19,9 @@ class ChangeTask : public QDialog
     Q_OBJECT
 
 public:
-    explicit ChangeTask(QWidget *parent = nullptr);
+    explicit ChangeTask(QWidget *parent = nullptr, long indexTask=-1);
     ~ChangeTask();
+
 
 public slots:
     void setDescription(const QString& desc);
@@ -29,6 +30,9 @@ public slots:
 
 private:
     Ui::ChangeTask *ui;
+    void getTaskId();
+    long indexTask_;
+
 };
 
 #endif // CHANGETASK_H

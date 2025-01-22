@@ -61,16 +61,27 @@ void MainWindow::DeleteTask_clicked() {
 
 void MainWindow::ChangeTask_clicked()
 {
+    long taskIndexOfVectorArray = getTaskIndexId();
+    if (taskIndexOfVectorArray >= 0)
+    {
+        ChangeTask *changeTask = new ChangeTask(this,taskIndexOfVectorArray);
+        changeTask->exec();
+
+    }
+}
+
+
+long MainWindow::getTaskIndexId()
+{
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
     if (!selectionModel->hasSelection()) {
         QMessageBox::warning(this, "Fehler", "Bitte wählen Sie eine Zeile aus, um sie zu ändern.");
-        return;
+        return -1;
     }
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (!selectedRows.isEmpty()) {
         int rowToDelete = selectedRows.first().row();
-
-        ChangeTask *changeTask = new ChangeTask(this);
-        changeTask->exec();
+        return rowToDelete;
     }
+    return -1;
 }

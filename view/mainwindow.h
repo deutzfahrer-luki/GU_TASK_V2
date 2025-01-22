@@ -26,6 +26,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    TaskTableModel *m_model;
+    TaskTableModel *m_model; 
+    long getTaskIndexId();
 };
 #endif // MAINWINDOW_H

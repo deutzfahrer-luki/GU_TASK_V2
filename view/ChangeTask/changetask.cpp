@@ -6,7 +6,7 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     , ui(new Ui::ChangeTask)
 {
     ui->setupUi(this);
-    setDescription("HALLO");
+    setDescription(ui->DescLine);
     initializeStateDropdown(ui->comboBoxState);
     initializeUserDropdown(ui->comboBoxUser);
 
@@ -18,18 +18,18 @@ ChangeTask::~ChangeTask()
 }
 
 
-void ChangeTask::setDescription(const QString& desc) {
-    ui->DescLine->setText(desc);
+void ChangeTask::setDescription(QLineEdit* descLine) {
+    descLine->setText(QString::fromStdString(tasks[indexTask_].getDescription()));
 }
 
 void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
-    //comboBox->addItem(QString::fromStdString(relativeDueToString(tasks[indexTask_].getStateRelative())), QVariant(0));
-    std::cout<<relativeStateToString(tasks[indexTask_].getStateRelative())<<std::endl;
-    //ERROR
-
-    for (int i = static_cast<int>(RelativeDue::Irrelevant)+1; i <= static_cast<int>(RelativeDue::Later); ++i) {
-        RelativeDue state = static_cast<RelativeDue>(i);
-        comboBox->addItem(QString::fromStdString(relativeDueToString(state)), QVariant(i));
+    comboBox->addItem(QString::fromStdString(relativeStateToString(tasks[indexTask_].getStateRelative())), QVariant(0));
+    for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
+        RelativeState state = static_cast<RelativeState>(i);
+        if (relativeStateToString(tasks[indexTask_].getStateRelative()) != relativeStateToString(state))
+        {
+            comboBox->addItem(QString::fromStdString(relativeStateToString(state)), QVariant(i));
+        }
     }
 }
 

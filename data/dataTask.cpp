@@ -9,7 +9,10 @@ QVector<User> users = {
 
 QVector<Task> tasks = {
     Task(1,"Finish Homework", Date(2024,12,24), users[0], RelativeState::Finished),
-    Task(2, "Finish School", Date("2030-12-24"), users[1], RelativeState::Started),
+    Task(2, "Finish School", Date("2030-12-24"), users[1], RelativeState::Staying),
+    Task(3, "Finish School", Date("2030-12-24"), users[1], RelativeState::Finished),
+    Task(4, "Finish School", Date("2030-12-24"), users[1], RelativeState::Working),
+
 };
 
 

@@ -24,7 +24,7 @@ public:
 
 
 public slots:
-    void setDescription(const QString& desc);
+    void setDescription(QLineEdit* descLine);
     void initializeStateDropdown(QComboBox* comboBox);
     void initializeUserDropdown(QComboBox* comboBox);
 

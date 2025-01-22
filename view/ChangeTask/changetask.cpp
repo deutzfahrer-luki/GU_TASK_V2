@@ -24,7 +24,7 @@ void ChangeTask::setDescription(const QString& desc) {
 
 void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
     //comboBox->addItem(QString::fromStdString(relativeDueToString(tasks[indexTask_].getStateRelative())), QVariant(0));
-    std::cout<<relativeDueToString(tasks[indexTask_].getStateRelative())<<std::endl;
+    std::cout<<relativeStateToString(tasks[indexTask_].getStateRelative())<<std::endl;
     //ERROR
 
     for (int i = static_cast<int>(RelativeDue::Irrelevant)+1; i <= static_cast<int>(RelativeDue::Later); ++i) {

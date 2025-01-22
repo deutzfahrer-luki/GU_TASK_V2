@@ -35,9 +35,9 @@ QString AddTasks::getSelectedState() const {
 
 /*---------- Setter for Ui ComboBoxes----------*/
 void AddTasks::initializeStateDropdown(QComboBox* comboBox) {
-    for (int i = static_cast<int>(RelativeDue::Irrelevant); i <= static_cast<int>(RelativeDue::Later); ++i) {
-        RelativeDue state = static_cast<RelativeDue>(i);
-        comboBox->addItem(QString::fromStdString(relativeDueToString(state)), QVariant(i));
+    for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
+        RelativeState state = static_cast<RelativeState>(i);
+        comboBox->addItem(QString::fromStdString(relativeStateToString(state)), QVariant(i));
     }
 }
 
@@ -55,7 +55,7 @@ void AddTasks::addTask() {
     QString user = getSelectedUser();
     QString state = getSelectedState();
 
-    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[1], relativeDueFromString(state.toStdString()));
+    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[1], relativeStateFromString(state.toStdString()));
 
     emit taskAdded(newTask);
     accept();

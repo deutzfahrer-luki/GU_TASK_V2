@@ -1,0 +1,4 @@
+#ifndef RELATIVESTATE_H
+#define RELATIVESTATE_H
+
+#endif // RELATIVESTATE_H

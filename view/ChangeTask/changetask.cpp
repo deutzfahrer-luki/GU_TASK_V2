@@ -16,26 +16,6 @@ ChangeTask::~ChangeTask()
 {
     delete ui;
 }
-/*
-void ChangeTask::getTaskId()
-{
-    QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
-
-    if (!selectionModel->hasSelection()) {
-        QMessageBox::warning(this, "Fehler", "Bitte wählen Sie eine Zeile aus, um sie zu löschen.");
-        return;
-    }
-
-    QModelIndexList selectedRows = selectionModel->selectedRows();
-    if (!selectedRows.isEmpty()) {
-        int rowToDelete = selectedRows.first().row();
-        tasks.removeAt(rowToDelete);
-        m_model->setTasks(tasks);
-        QMessageBox::information(this, "Erfolg", "Der Task wurde erfolgreich gelöscht.");
-    }
-}
-
-*/
 
 
 void ChangeTask::setDescription(const QString& desc) {
@@ -44,9 +24,9 @@ void ChangeTask::setDescription(const QString& desc) {
 
 void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
     //comboBox->addItem(QString::fromStdString(relativeDueToString(tasks[indexTask_].getStateRelative())), QVariant(0));
-    //std::cout<<relativeDueToString(tasks[indexTask_].getStateRelative())<<std::endl;
+    std::cout<<relativeDueToString(tasks[indexTask_].getStateRelative())<<std::endl;
     //ERROR
-    std::cout<<indexTask_<<std::endl;
+
     for (int i = static_cast<int>(RelativeDue::Irrelevant)+1; i <= static_cast<int>(RelativeDue::Later); ++i) {
         RelativeDue state = static_cast<RelativeDue>(i);
         comboBox->addItem(QString::fromStdString(relativeDueToString(state)), QVariant(i));

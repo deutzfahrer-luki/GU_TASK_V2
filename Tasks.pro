@@ -22,6 +22,7 @@ HEADERS += \
     data/dataTask.h \
     data/jsonloader.h \
     model/RelativeDue.h \
+    model/RelativeState.h \
     view/AddTask/addtasks.h \
     view/AddUser/addusers.h \
     view/ChangeTask/changetask.h \

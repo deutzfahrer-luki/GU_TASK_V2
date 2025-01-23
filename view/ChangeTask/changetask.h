@@ -5,10 +5,12 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QDialogButtonBox>
+#include <QDateEdit>
 //#include "ui_changetask.h"
 #include "model/RelativeDue.h"
 #include "model/user.h"
 #include "data/dataTask.h"
+
 
 namespace Ui {
 class ChangeTask;
@@ -27,6 +29,7 @@ public slots:
     void setDescription(QLineEdit* descLine);
     void initializeStateDropdown(QComboBox* comboBox);
     void initializeUserDropdown(QComboBox* comboBox);
+    void setDate();
 
 private:
     Ui::ChangeTask *ui;

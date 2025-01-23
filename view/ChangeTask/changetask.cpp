@@ -9,6 +9,7 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     setDescription(ui->DescLine);
     initializeStateDropdown(ui->comboBoxState);
     initializeUserDropdown(ui->comboBoxUser);
+    setDate();
 
 }
 
@@ -16,7 +17,6 @@ ChangeTask::~ChangeTask()
 {
     delete ui;
 }
-
 
 void ChangeTask::setDescription(QLineEdit* descLine) {
     descLine->setText(QString::fromStdString(tasks[indexTask_].getDescription()));
@@ -45,3 +45,10 @@ void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
         }
     }
 }
+
+void ChangeTask::setDate(){
+    QDate date = QDate::fromString(QString::fromStdString(tasks[indexTask_].getDue()), "yyyy-MM-dd");
+    ui->dateEdit->setDate(date);
+}
+
+

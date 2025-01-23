@@ -21,6 +21,7 @@ public:
     RelativeState getStateRelative() const { return state; }
     std::string getStateByString() const { return relativeStateToString(state); }
     std::string getDue() const { return static_cast<std::string>(due); }
+    // QDate getDate() const { return due.getQDate(); } Error
 
 private:
     Date due; // Direktes Date-Objekt

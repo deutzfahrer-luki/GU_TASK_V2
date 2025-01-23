@@ -5,7 +5,7 @@
 
 
 
-Date::Date(int year, int month, int day) {
+Date::Date(int year, int month, int day): year(year), month(month), day(day)  {
     std::tm tm = {};
     tm.tm_year = year - 1900; // Adjust for tm_year
     tm.tm_mon = month - 1;    // Adjust for tm_mon

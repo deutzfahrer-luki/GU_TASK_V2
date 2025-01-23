@@ -4,6 +4,7 @@
 #include <string>
 #include <chrono>
 #include <sstream>
+#include <QDate>
 
 class Date
 {
@@ -20,7 +21,10 @@ public:
 
     void printout();
 
+    QDate getQDate() { return QDate(year, month, day);}
+
 private:
+    int year, month, day;
     std::chrono::system_clock::time_point timepoint;
 
 };

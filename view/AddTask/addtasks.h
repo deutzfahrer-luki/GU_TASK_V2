@@ -41,6 +41,7 @@ private:
     Ui::AddTasks *ui;
     void initializeStateDropdown(QComboBox* comboBox);
     void initializeUserDropdown(QComboBox* comboBox);
+    void setDate();
 };
 
 #endif // ADDTASKS_H

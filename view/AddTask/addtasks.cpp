@@ -4,6 +4,7 @@
 
 AddTasks::AddTasks(QWidget *parent): QDialog(parent), ui(new Ui::AddTasks) {
     ui->setupUi(this);
+    setDate();
     initializeStateDropdown(ui->comboBoxState);
     initializeUserDropdown(ui->comboBoxUser);
 
@@ -34,7 +35,7 @@ QString AddTasks::getSelectedState() const {
 }
 
 
-/*---------- Setter for Ui ComboBoxes----------*/
+/*---------- Setter for Ui ----------*/
 void AddTasks::initializeStateDropdown(QComboBox* comboBox) {
     for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
         RelativeState state = static_cast<RelativeState>(i);
@@ -48,6 +49,16 @@ void AddTasks::initializeUserDropdown(QComboBox* comboBox) {
     }
 }
 
+void AddTasks::setDate() {
+    Date today;
+    QDate todayQ = today.getQDate();
+    if (todayQ.isValid()) {
+        std::cout << todayQ.toString("yyyy-MM-dd").toStdString() << std::endl;
+    } else {
+        std::cout << "Invalid date!" << std::endl;
+    }
+    ui->dateEdit->setDate(todayQ);
+}
 
 /*---------- add Task ----------*/
 void AddTasks::addTask() {
@@ -58,8 +69,6 @@ void AddTasks::addTask() {
 
     long indexUsers = getIndexOfUsers(user.toStdString());
     Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[indexUsers], RelativeStateManager::getInstance().relativeStateFromString(state.toStdString()));
-
-
 
     emit taskAdded(newTask);
     accept();

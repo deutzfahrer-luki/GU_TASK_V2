@@ -21,8 +21,11 @@ public:
 
     void printout();
 
-    QDate getQDate() { return QDate(year, month, day);}
-
+    QDate getQDate() {
+        std::time_t tt = std::chrono::system_clock::to_time_t(timepoint);
+        std::tm tm = *std::localtime(&tt);
+        return QDate(tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+    }
 private:
     int year, month, day;
     std::chrono::system_clock::time_point timepoint;

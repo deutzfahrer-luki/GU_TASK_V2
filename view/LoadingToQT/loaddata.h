@@ -3,6 +3,7 @@
 
 #include <QComboBox>
 #include <QDateEdit>
+#include <QLineEdit>
 
 #include "data/dataTask.h"
 #include "model/user.h"

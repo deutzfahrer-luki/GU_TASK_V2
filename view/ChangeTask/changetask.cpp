@@ -1,6 +1,6 @@
 #include "changetask.h"
 #include "ui_changetask.h"
-
+#include "view/LoadingToQT/loaddata.h"
 
 ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     : QDialog(parent), indexTask_(indexTask)
@@ -8,9 +8,9 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
 {
     ui->setupUi(this);
     setDescription(ui->DescLine);
-    initializeStateDropdown(ui->comboBoxState);
-    initializeUserDropdown(ui->comboBoxUser);
-    setDate();
+    LoadData::getInstance()->initializeStateDropdown(ui->comboBoxState);
+    LoadData::getInstance()->initializeUserDropdown(ui->comboBoxUser);
+    LoadData::getInstance()->setDate(ui->dateEdit);
 
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::updateTasks);
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
@@ -23,35 +23,6 @@ ChangeTask::~ChangeTask()
 
 void ChangeTask::setDescription(QLineEdit* descLine) {
     descLine->setText(QString::fromStdString(tasks[indexTask_].getDescription()));
-}
-
-void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
-    comboBox->clear();
-    comboBox->addItem(QString::fromStdString(RelativeStateManager::getInstance().relativeStateToString(tasks[indexTask_].getStateRelative())), QVariant(0));
-    for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
-        RelativeState state = static_cast<RelativeState>(i);
-        if (RelativeStateManager::getInstance().relativeStateToString(tasks[indexTask_].getStateRelative()) != RelativeStateManager::getInstance().relativeStateToString(state))
-        {
-            comboBox->addItem(QString::fromStdString(RelativeStateManager::getInstance().relativeStateToString(state)), QVariant(i));
-        }
-    }
-}
-
-void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
-    comboBox->clear();
-    User assignee = tasks[indexTask_].getUser();
-    comboBox->addItem(QString::fromStdString(assignee.getFullName()));
-    for (const User& user : users) {
-        if (user.getFullName() != assignee.getFullName())
-        {
-            comboBox->addItem(QString::fromStdString(user.getFullName()));
-        }
-    }
-}
-
-void ChangeTask::setDate(){
-    QDate date = QDate::fromString(QString::fromStdString(tasks[indexTask_].getDue()), "yyyy-MM-dd");
-    ui->dateEdit->setDate(date);   
 }
 
 void ChangeTask::updateTasks(){

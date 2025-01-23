@@ -31,10 +31,5 @@ void LoadData::initializeStateDropdown(QComboBox* comboBox) {
 void LoadData::setDate(QDateEdit* dateEdit) {
     Date today;
     QDate todayQ = today.getQDate();
-    if (todayQ.isValid()) {
-        std::cout << todayQ.toString("yyyy-MM-dd").toStdString() << std::endl;
-    } else {
-        std::cout << "Invalid date!" << std::endl;
-    }
     dateEdit->setDate(todayQ);
 }

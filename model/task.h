@@ -17,6 +17,7 @@ public:
     int getId() const { return id; }
     std::string getDescription() const { return description; }
     std::string getAssignee() const { return assignee.getFullName(); }
+    User getUser() { return assignee; }
     RelativeState getStateRelative() const { return state; }
     std::string getStateByString() const { return relativeStateToString(state); }
     std::string getDue() const { return static_cast<std::string>(due); }

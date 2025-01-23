@@ -23,6 +23,7 @@ void ChangeTask::setDescription(QLineEdit* descLine) {
 }
 
 void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
+    comboBox->clear();
     comboBox->addItem(QString::fromStdString(relativeStateToString(tasks[indexTask_].getStateRelative())), QVariant(0));
     for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
         RelativeState state = static_cast<RelativeState>(i);
@@ -34,7 +35,13 @@ void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
 }
 
 void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
+    comboBox->clear();
+    User assignee = tasks[indexTask_].getUser();
+    comboBox->addItem(QString::fromStdString(assignee.getFullName()));
     for (const User& user : users) {
-        comboBox->addItem(QString::fromStdString(user.getFullName()));
+        if (user.getFullName() != assignee.getFullName())
+        {
+            comboBox->addItem(QString::fromStdString(user.getFullName()));
+        }
     }
 }

@@ -27,12 +27,12 @@ void ChangeTask::setDescription(QLineEdit* descLine) {
 
 void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
     comboBox->clear();
-    comboBox->addItem(QString::fromStdString(relativeStateToString(tasks[indexTask_].getStateRelative())), QVariant(0));
+    comboBox->addItem(QString::fromStdString(RelativeStateManager::getInstance().relativeStateToString(tasks[indexTask_].getStateRelative())), QVariant(0));
     for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
         RelativeState state = static_cast<RelativeState>(i);
-        if (relativeStateToString(tasks[indexTask_].getStateRelative()) != relativeStateToString(state))
+        if (RelativeStateManager::getInstance().relativeStateToString(tasks[indexTask_].getStateRelative()) != RelativeStateManager::getInstance().relativeStateToString(state))
         {
-            comboBox->addItem(QString::fromStdString(relativeStateToString(state)), QVariant(i));
+            comboBox->addItem(QString::fromStdString(RelativeStateManager::getInstance().relativeStateToString(state)), QVariant(i));
         }
     }
 }
@@ -70,6 +70,6 @@ void ChangeTask::updateTasks(){
     //std::cout<<indexUsers<<" "<<user.toStdString()<<std::endl;
     tasks[indexTask_].setAssignee(users[indexUsers]);
 
-    RelativeState stateRelativeState = relativeStateFromString(ui->comboBoxState->currentText().toStdString());
+    RelativeState stateRelativeState = RelativeStateManager::getInstance().relativeStateFromString(ui->comboBoxState->currentText().toStdString());
     tasks[indexTask_].setState(stateRelativeState);
 }

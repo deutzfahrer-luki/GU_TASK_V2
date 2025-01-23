@@ -19,9 +19,9 @@ public:
     std::string getAssignee() const { return assignee.getFullName(); }
     User getUser() { return assignee; }
     RelativeState getStateRelative() const { return state; }
-    std::string getStateByString() const { return relativeStateToString(state); }
+    std::string getStateByString() const { return RelativeStateManager::getInstance().relativeStateToString(state); }
     std::string getDue() const { return static_cast<std::string>(due); }
-    // QDate getDate() const { return due.getQDate(); } Error
+    //QDate getDate() const { return due.getQDate(); } Error
 
     void setDescription(const std::string& newDescription) { description = newDescription; }
     void setAssignee(const User& newAssignee) { assignee = newAssignee; }

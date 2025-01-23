@@ -38,7 +38,7 @@ QString AddTasks::getSelectedState() const {
 void AddTasks::initializeStateDropdown(QComboBox* comboBox) {
     for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
         RelativeState state = static_cast<RelativeState>(i);
-        comboBox->addItem(QString::fromStdString(relativeStateToString(state)), QVariant(i));
+        comboBox->addItem(QString::fromStdString(RelativeStateManager::getInstance().relativeStateToString(state)), QVariant(i));
     }
 }
 
@@ -57,7 +57,7 @@ void AddTasks::addTask() {
     QString state = getSelectedState();
 
     long indexUsers = getIndexOfUsers(user.toStdString());
-    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[indexUsers], relativeStateFromString(state.toStdString()));
+    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[indexUsers], RelativeStateManager::getInstance().relativeStateFromString(state.toStdString()));
 
 
 

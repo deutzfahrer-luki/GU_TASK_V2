@@ -33,4 +33,6 @@ inline RelativeState relativeStateFromString(const std::string& state) {
     throw std::invalid_argument("Unrecognized RelativeState string: " + state);
 }
 
+//inline RelativeState relativeStateIndex(const std::)
+
 #endif // RELATIVESTATE_H

@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QComboBox>
-
 #include <QPushButton>
 #include <QDialogButtonBox>
 
@@ -12,7 +11,9 @@
 #include "model/task.h"
 #include "model/user.h"
 #include "data/dataTask.h"
-
+#include "ui_addtasks.h"
+#include "data/dataTask.h"
+#include "viewController/LoadingToQT/loaddata.h"
 
 namespace Ui {
 class AddTasks;

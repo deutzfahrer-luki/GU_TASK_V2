@@ -1,10 +1,18 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
+
 #include <QMainWindow>
 #include <QTableWidget>
 #include <QMessageBox>
-#include "view/tasktablemodel.h"
+#include "viewController//tasktablemodel.h"
+#include "model/task.h"
+#include "data/dataTask.h"
+#include "view/AddTask/addtasks.h"
+#include "view/AddUser/addusers.h"
+#include "view/ChangeTask/changetask.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

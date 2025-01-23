@@ -1,8 +1,4 @@
 #include "addtasks.h"
-#include "ui_addtasks.h"
-#include "data/dataTask.h"
-
-#include "view/LoadingToQT/loaddata.h"
 
 AddTasks::AddTasks(QWidget *parent): QDialog(parent), ui(new Ui::AddTasks) {
     ui->setupUi(this);

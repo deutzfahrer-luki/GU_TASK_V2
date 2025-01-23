@@ -11,6 +11,8 @@
 #include "model/user.h"
 #include "data/dataTask.h"
 #include "view/AddTask/addtasks.h"
+#include "ui_changetask.h"
+#include "viewController/LoadingToQT/loaddata.h"
 
 
 namespace Ui {

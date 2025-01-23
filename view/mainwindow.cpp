@@ -1,11 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "tasktablemodel.h"
-#include "model/task.h"
-#include "data/dataTask.h"
-#include "view/AddTask/addtasks.h"
-#include "view/AddUser/addusers.h"
-#include "view/ChangeTask/changetask.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {

@@ -1,6 +1,4 @@
 #include "changetask.h"
-#include "ui_changetask.h"
-#include "view/LoadingToQT/loaddata.h"
 
 ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     : QDialog(parent), indexTask_(indexTask)

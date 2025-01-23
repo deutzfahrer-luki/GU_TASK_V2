@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="buttonBoxEnter">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -152,7 +152,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonBoxEnter</sender>
    <signal>accepted()</signal>
    <receiver>ChangeTask</receiver>
    <slot>accept()</slot>
@@ -168,7 +168,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonBoxEnter</sender>
    <signal>rejected()</signal>
    <receiver>ChangeTask</receiver>
    <slot>reject()</slot>

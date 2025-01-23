@@ -66,7 +66,7 @@ void MainWindow::ChangeTask_clicked()
     {
         ChangeTask *changeTask = new ChangeTask(this,taskIndexOfVectorArray);
         changeTask->exec();
-
+        m_model->setTasks(tasks);
     }
 }
 

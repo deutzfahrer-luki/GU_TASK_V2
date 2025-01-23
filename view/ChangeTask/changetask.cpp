@@ -1,6 +1,7 @@
 #include "changetask.h"
 #include "ui_changetask.h"
 
+
 ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     : QDialog(parent), indexTask_(indexTask)
     , ui(new Ui::ChangeTask)
@@ -11,6 +12,9 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     initializeUserDropdown(ui->comboBoxUser);
     setDate();
 
+    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::updateTasks);
+    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
+    std::cout<<tasks[indexTask_].getDescription()<<std::endl;
 }
 
 ChangeTask::~ChangeTask()
@@ -48,7 +52,18 @@ void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
 
 void ChangeTask::setDate(){
     QDate date = QDate::fromString(QString::fromStdString(tasks[indexTask_].getDue()), "yyyy-MM-dd");
-    ui->dateEdit->setDate(date);
+    ui->dateEdit->setDate(date);   
 }
 
+void ChangeTask::updateTasks(){
+    // Description changing
+    std::string description = ui->DescLine->text().toStdString();
+    tasks[indexTask_].setDescription(description);
 
+    // Date changing
+    QDate date = ui->dateEdit->date();
+    std::string dueDate = date.toString("yyyy-MM-dd").toStdString();
+    std::cout <<"old: "<<dueDate<<std::endl;
+    tasks[indexTask_].setDue(Date(dueDate));
+
+}

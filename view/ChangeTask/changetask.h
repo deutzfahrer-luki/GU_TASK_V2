@@ -10,6 +10,7 @@
 #include "model/RelativeDue.h"
 #include "model/user.h"
 #include "data/dataTask.h"
+#include "view/AddTask/addtasks.h"
 
 
 namespace Ui {
@@ -23,13 +24,16 @@ class ChangeTask : public QDialog
 public:
     explicit ChangeTask(QWidget *parent = nullptr, long indexTask=-1);
     ~ChangeTask();
-
+signals:
+    void taskAdded(const Task& task);
 
 public slots:
     void setDescription(QLineEdit* descLine);
     void initializeStateDropdown(QComboBox* comboBox);
     void initializeUserDropdown(QComboBox* comboBox);
     void setDate();
+
+    void updateTasks();
 
 private:
     Ui::ChangeTask *ui;

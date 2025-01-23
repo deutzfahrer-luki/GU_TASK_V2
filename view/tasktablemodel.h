@@ -63,7 +63,7 @@ public:
             case 4:
                 return QString::fromStdString(task.getStateByString());
             case 5:
-                return QString::fromStdString(relativeDueToday(task.getDue()));  // Spalte 5: Relative Due
+                return QString::fromStdString(RelativeDueManager::getInstance().relativeDueToday(task.getDue()));  // Spalte 5: Relative Due
             default:
                 return QVariant();  // Für ungültige Spalten keine Daten zurückgeben
             }
@@ -71,7 +71,7 @@ public:
         case Qt::BackgroundRole:  // Hintergrundfarbe
             // Wenn wir in der letzten Spalte sind (Relative Due)
             if (index.column() == 5) {
-                QString relativeDue = QString::fromStdString(relativeDueToday(task.getDue()));
+                QString relativeDue = QString::fromStdString(RelativeDueManager::getInstance().relativeDueToday(task.getDue()));
 
                 // Setze die Hintergrundfarbe basierend auf dem Wert in der letzten Spalte
                 if (relativeDue == "Overdue") {
@@ -93,7 +93,7 @@ public:
         case Qt::ForegroundRole:  // Textfarbe
             // Wenn wir in der letzten Spalte sind (Relative Due)
             if (index.column() == 5) {
-                QString relativeDue = QString::fromStdString(relativeDueToday(task.getDue()));
+                QString relativeDue = QString::fromStdString(RelativeDueManager::getInstance().relativeDueToday(task.getDue()));
 
                 // Setze die Textfarbe basierend auf dem Wert in der letzten Spalte
                 if (relativeDue == "Overdue") {

@@ -11,6 +11,7 @@
 #include "model/RelativeDue.h"
 #include "model/task.h"
 #include "model/user.h"
+#include "data/dataTask.h"
 
 
 namespace Ui {

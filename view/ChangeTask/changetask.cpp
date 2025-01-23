@@ -14,7 +14,6 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
 
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::updateTasks);
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
-    std::cout<<tasks[indexTask_].getDescription()<<std::endl;
 }
 
 ChangeTask::~ChangeTask()
@@ -63,7 +62,13 @@ void ChangeTask::updateTasks(){
     // Date changing
     QDate date = ui->dateEdit->date();
     std::string dueDate = date.toString("yyyy-MM-dd").toStdString();
-    std::cout <<"old: "<<dueDate<<std::endl;
     tasks[indexTask_].setDue(Date(dueDate));
+
+    // User changing
+    QString user = ui->comboBoxUser->currentText();
+    long indexUsers = getIndexOfUsers(user.toStdString());
+    //std::cout<<indexUsers<<" "<<user.toStdString()<<std::endl;
+    tasks[indexTask_].setAssignee(users[indexUsers]);
+
 
 }

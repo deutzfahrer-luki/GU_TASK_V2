@@ -22,3 +22,15 @@ void removeTask(uint8_t taskIdToDelete)
         return task.getId() == taskIdToDelete;
     });
 }
+
+long getIndexOfUsers(std::string user)
+{
+    for (unsigned int i = 0; users.size(); i++)
+    {
+        if (user == users[i].getFullName())
+        {
+            return i;
+        }
+    }
+    return -1;
+}

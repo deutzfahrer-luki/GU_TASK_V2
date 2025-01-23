@@ -1,5 +1,6 @@
 #include "addtasks.h"
 #include "ui_addtasks.h"
+#include "data/dataTask.h"
 
 AddTasks::AddTasks(QWidget *parent): QDialog(parent), ui(new Ui::AddTasks) {
     ui->setupUi(this);
@@ -55,7 +56,10 @@ void AddTasks::addTask() {
     QString user = getSelectedUser();
     QString state = getSelectedState();
 
-    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[1], relativeStateFromString(state.toStdString()));
+    long indexUsers = getIndexOfUsers(user.toStdString());
+    Task newTask(tasks.size()+1, description.toStdString(), Date(date.toString("yyyy-MM-dd").toStdString()), users[indexUsers], relativeStateFromString(state.toStdString()));
+
+
 
     emit taskAdded(newTask);
     accept();

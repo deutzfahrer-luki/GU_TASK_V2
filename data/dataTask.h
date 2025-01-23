@@ -9,4 +9,6 @@
 extern QVector<User> users;
 extern QVector<Task> tasks;
 
+long getIndexOfUsers(std::string user);
+
 #endif // DATATASK_H

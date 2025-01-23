@@ -23,6 +23,15 @@ public:
     Date getBirthday() const { return this->birthday; }
     void setBirthday(const Date& birthday) { this->birthday = birthday; }
 
+    bool compareUser(User* comperative)
+    {
+        if (comperative->getFullName() == this->getFullName())
+        {
+            return true;
+        }
+        return false;
+    }
+
 private:
     int id;
     std::string vorname;

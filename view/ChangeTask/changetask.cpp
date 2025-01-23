@@ -70,6 +70,7 @@ void ChangeTask::updateTasks(){
     //std::cout<<indexUsers<<" "<<user.toStdString()<<std::endl;
     tasks[indexTask_].setAssignee(users[indexUsers]);
 
+    // State changing
     RelativeState stateRelativeState = RelativeStateManager::getInstance().relativeStateFromString(ui->comboBoxState->currentText().toStdString());
     tasks[indexTask_].setState(stateRelativeState);
 }

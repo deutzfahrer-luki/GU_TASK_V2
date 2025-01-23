@@ -21,7 +21,6 @@ public:
     RelativeState getStateRelative() const { return state; }
     std::string getStateByString() const { return RelativeStateManager::getInstance().relativeStateToString(state); }
     std::string getDue() const { return static_cast<std::string>(due); }
-    //QDate getDate() const { return due.getQDate(); } Error
 
     void setDescription(const std::string& newDescription) { description = newDescription; }
     void setAssignee(const User& newAssignee) { assignee = newAssignee; }
@@ -29,7 +28,7 @@ public:
     void setDue(const Date& newDue) { due = newDue; }
 
 private:
-    Date due; // Direktes Date-Objekt
+    Date due;
     int id;
     std::string description;
     User assignee;

@@ -14,6 +14,7 @@ SOURCES += \
     view/AddTask/addtasks.cpp \
     view/AddUser/addusers.cpp \
     view/ChangeTask/changetask.cpp \
+    view/LoadingToQT/loaddata.cpp \
     view/mainwindow.cpp \
     util/date.cpp
 
@@ -26,6 +27,7 @@ HEADERS += \
     view/AddTask/addtasks.h \
     view/AddUser/addusers.h \
     view/ChangeTask/changetask.h \
+    view/LoadingToQT/loaddata.h \
     view/mainwindow.h \
     model/task.h \
     model/user.h \

@@ -19,19 +19,19 @@ AddTasks::~AddTasks() {
 
 /*---------- Getter from Ui ----------*/
 QString AddTasks::getDescription() const {
-    return ui->lineEditDesc->text(); // Beschreibung aus dem QLineEdit
+    return ui->lineEditDesc->text();
 }
 
 QDate AddTasks::getDate() const {
-    return ui->dateEdit->date(); // Datum aus dem QDateEdit
+    return ui->dateEdit->date();
 }
 
 QString AddTasks::getSelectedUser() const {
-    return ui->comboBoxUser->currentText(); // Ausgewählter Benutzer aus der QComboBox
+    return ui->comboBoxUser->currentText();
 }
 
 QString AddTasks::getSelectedState() const {
-    return ui->comboBoxState->currentText(); // Ausgewählter Status aus der QComboBox
+    return ui->comboBoxState->currentText();
 }
 
 
@@ -49,16 +49,7 @@ void AddTasks::initializeUserDropdown(QComboBox* comboBox) {
     }
 }
 
-void AddTasks::setDate() {
-    Date today;
-    QDate todayQ = today.getQDate();
-    if (todayQ.isValid()) {
-        std::cout << todayQ.toString("yyyy-MM-dd").toStdString() << std::endl;
-    } else {
-        std::cout << "Invalid date!" << std::endl;
-    }
-    ui->dateEdit->setDate(todayQ);
-}
+
 
 /*---------- add Task ----------*/
 void AddTasks::addTask() {

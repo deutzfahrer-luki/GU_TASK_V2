@@ -2,11 +2,13 @@
 #include "ui_addtasks.h"
 #include "data/dataTask.h"
 
+#include "view/LoadingToQT/loaddata.h"
+
 AddTasks::AddTasks(QWidget *parent): QDialog(parent), ui(new Ui::AddTasks) {
     ui->setupUi(this);
-    setDate();
-    initializeStateDropdown(ui->comboBoxState);
-    initializeUserDropdown(ui->comboBoxUser);
+    LoadData::getInstance()->setDate(ui->dateEdit);
+    LoadData::getInstance()->initializeStateDropdown(ui->comboBoxState);
+    LoadData::getInstance()->initializeUserDropdown(ui->comboBoxUser);
 
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &AddTasks::addTask);
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &AddTasks::reject);
@@ -33,22 +35,6 @@ QString AddTasks::getSelectedUser() const {
 QString AddTasks::getSelectedState() const {
     return ui->comboBoxState->currentText();
 }
-
-
-/*---------- Setter for Ui ----------*/
-void AddTasks::initializeStateDropdown(QComboBox* comboBox) {
-    for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
-        RelativeState state = static_cast<RelativeState>(i);
-        comboBox->addItem(QString::fromStdString(RelativeStateManager::getInstance().relativeStateToString(state)), QVariant(i));
-    }
-}
-
-void AddTasks::initializeUserDropdown(QComboBox* comboBox) {
-    for (const User& user : users) {
-        comboBox->addItem(QString::fromStdString(user.getFullName()));
-    }
-}
-
 
 
 /*---------- add Task ----------*/

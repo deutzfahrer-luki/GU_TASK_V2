@@ -28,8 +28,11 @@ signals:
     void taskAdded(const Task& task);
 
 public slots:
-    void initializeStateDropdown(QComboBox* comboBox);
-    void initializeUserDropdown(QComboBox* comboBox);
+    void initializeStateDropdownChange(QComboBox* comboBox);
+    void initializeStateDropdownAdd(QComboBox* comboBox);
+
+    void initializeUserDropdownChange(QComboBox* comboBox);
+    void initializeUserDropdownAdd(QComboBox* comboBox);
 
     void setDateByTasks();
     void setDescriptionByTasks(QLineEdit* descLine);

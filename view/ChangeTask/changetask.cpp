@@ -16,6 +16,8 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
         setDateByTasks();
         this->setWindowTitle("Change");
         connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::updateTasks);
+        initializeStateDropdownChange(ui->comboBoxState);
+        initializeUserDropdownChange(ui->comboBoxUser);
     }
 
     else if (indexTask<0) // Add Task
@@ -24,12 +26,13 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
         this->setWindowTitle("Add");
         setDateToday();
         connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::addTasks);
+        initializeStateDropdownAdd(ui->comboBoxState);
+        initializeUserDropdownAdd(ui->comboBoxUser);
     }
 
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
 
-    initializeStateDropdown(ui->comboBoxState);
-    initializeUserDropdown(ui->comboBoxUser);
+
 }
 
 ChangeTask::~ChangeTask()
@@ -41,7 +44,7 @@ void ChangeTask::setDescriptionByTasks(QLineEdit* descLine) {
     descLine->setText(QString::fromStdString(tasks[indexTask_].getDescription()));
 }
 
-void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
+void ChangeTask::initializeStateDropdownChange(QComboBox* comboBox) {
     comboBox->clear();
     comboBox->addItem(QString::fromStdString(relativeStateToString(tasks[indexTask_].getStateRelative())), QVariant(0));
     for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
@@ -53,7 +56,7 @@ void ChangeTask::initializeStateDropdown(QComboBox* comboBox) {
     }
 }
 
-void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
+void ChangeTask::initializeUserDropdownChange(QComboBox* comboBox) {
     comboBox->clear();
     User assignee = tasks[indexTask_].getUser();
     comboBox->addItem(QString::fromStdString(assignee.getFullName()));
@@ -62,6 +65,23 @@ void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
         {
             comboBox->addItem(QString::fromStdString(user.getFullName()));
         }
+    }
+}
+
+void ChangeTask::initializeStateDropdownAdd(QComboBox* comboBox) {
+    comboBox->clear();
+    for (int i = static_cast<int>(RelativeState::Started); i <= static_cast<int>(RelativeState::Finished); ++i) {
+        RelativeState state = static_cast<RelativeState>(i);
+            comboBox->addItem(QString::fromStdString(relativeStateToString(state)), QVariant(i));
+    }
+}
+
+void ChangeTask::initializeUserDropdownAdd(QComboBox* comboBox) {
+    comboBox->clear();
+    QString nullUser = "chosse User";
+    comboBox->addItem(nullUser);
+    for (const User& user : users) {
+        comboBox->addItem(QString::fromStdString(user.getFullName()));
     }
 }
 

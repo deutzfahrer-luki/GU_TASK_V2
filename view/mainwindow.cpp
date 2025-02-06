@@ -3,7 +3,6 @@
 #include "tasktablemodel.h"
 #include "model/task.h"
 #include "data/dataTask.h"
-#include "view/AddTask/addtasks.h"
 #include "view/AddUser/addusers.h"
 #include "view/ChangeTask/changetask.h"
 
@@ -28,12 +27,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::AddTaskButton_clicked()
 {
-    AddTasks *addTasksDialog = new AddTasks(this);
-    connect(addTasksDialog, &AddTasks::taskAdded, this, [this](const Task& task) {
-        tasks.append(task);
-        m_model->setTasks(tasks);
-    });
-    addTasksDialog->exec();
+    ChangeTask *changeTask = new ChangeTask(this);
+    changeTask->exec();
+    m_model->setTasks(tasks);
 }
 
 void MainWindow::AddUserButton_clicked()
@@ -62,7 +58,7 @@ void MainWindow::DeleteTask_clicked() {
 void MainWindow::ChangeTask_clicked()
 {
     long taskIndexOfVectorArray = getTaskIndexId();
-    if (taskIndexOfVectorArray >= 0)
+    if (taskIndexOfVectorArray>=0)
     {
         ChangeTask *changeTask = new ChangeTask(this,taskIndexOfVectorArray);
         changeTask->exec();
@@ -74,14 +70,13 @@ void MainWindow::ChangeTask_clicked()
 long MainWindow::getTaskIndexId()
 {
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
-    if (!selectionModel->hasSelection()) {
-        QMessageBox::warning(this, "Fehler", "Bitte wählen Sie eine Zeile aus, um sie zu ändern.");
-        return -1;
-    }
     QModelIndexList selectedRows = selectionModel->selectedRows();
     if (!selectedRows.isEmpty()) {
         int rowToDelete = selectedRows.first().row();
         return rowToDelete;
     }
-    return -1;
+    else {
+        QMessageBox::warning(this, "Fehler", "Bitte wählen Sie eine Zeile aus.");
+        return -1;
+    }
 }

@@ -3,17 +3,33 @@
 
 
 ChangeTask::ChangeTask(QWidget *parent, long indexTask)
-    : QDialog(parent), indexTask_(indexTask)
+    : QDialog(parent)
     , ui(new Ui::ChangeTask)
 {
     ui->setupUi(this);
-    setDescription(ui->DescLine);
+
+
+    if (indexTask>=0) // Change Task
+    {
+        indexTask_ = indexTask;
+        setDescriptionByTasks(ui->DescLine);
+        setDateByTasks();
+        this->setWindowTitle("Change");
+        connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::updateTasks);
+    }
+
+    else if (indexTask<0) // Add Task
+    {
+        indexTask_=0;
+        this->setWindowTitle("Add");
+        setDateToday();
+        connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::addTasks);
+    }
+
+    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
+
     initializeStateDropdown(ui->comboBoxState);
     initializeUserDropdown(ui->comboBoxUser);
-    setDate();
-
-    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::updateTasks);
-    connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
 }
 
 ChangeTask::~ChangeTask()
@@ -21,7 +37,7 @@ ChangeTask::~ChangeTask()
     delete ui;
 }
 
-void ChangeTask::setDescription(QLineEdit* descLine) {
+void ChangeTask::setDescriptionByTasks(QLineEdit* descLine) {
     descLine->setText(QString::fromStdString(tasks[indexTask_].getDescription()));
 }
 
@@ -49,9 +65,15 @@ void ChangeTask::initializeUserDropdown(QComboBox* comboBox) {
     }
 }
 
-void ChangeTask::setDate(){
+void ChangeTask::setDateByTasks(){
     QDate date = QDate::fromString(QString::fromStdString(tasks[indexTask_].getDue()), "yyyy-MM-dd");
     ui->dateEdit->setDate(date);   
+}
+
+void ChangeTask::setDateToday(){
+    QDate today = QDate::currentDate();
+    qDebug()<<today.toString();
+    ui->dateEdit->setDate(today);
 }
 
 void ChangeTask::updateTasks(){
@@ -67,9 +89,23 @@ void ChangeTask::updateTasks(){
     // User changing
     QString user = ui->comboBoxUser->currentText();
     long indexUsers = getIndexOfUsers(user.toStdString());
-    //std::cout<<indexUsers<<" "<<user.toStdString()<<std::endl;
+
     tasks[indexTask_].setAssignee(users[indexUsers]);
 
     RelativeState stateRelativeState = relativeStateFromString(ui->comboBoxState->currentText().toStdString());
     tasks[indexTask_].setState(stateRelativeState);
+}
+
+void ChangeTask::addTasks() {
+    std::string description = ui->DescLine->text().toStdString();
+
+    QDate date = ui->dateEdit->date();
+
+    QString user = ui->comboBoxUser->currentText();
+
+    RelativeState state = relativeStateFromString(ui->comboBoxState->currentText().toStdString());
+
+    long indexUsers = getIndexOfUsers(user.toStdString());
+
+    Task newTask(tasks.size()+1, description, Date(date.toString("yyyy-MM-dd").toStdString()), users[indexUsers], state);
 }

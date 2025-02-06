@@ -10,7 +10,7 @@
 #include "model/RelativeDue.h"
 #include "model/user.h"
 #include "data/dataTask.h"
-#include "view/AddTask/addtasks.h"
+#include "util/date.h"
 
 
 namespace Ui {
@@ -28,12 +28,17 @@ signals:
     void taskAdded(const Task& task);
 
 public slots:
-    void setDescription(QLineEdit* descLine);
     void initializeStateDropdown(QComboBox* comboBox);
     void initializeUserDropdown(QComboBox* comboBox);
-    void setDate();
+
+    void setDateByTasks();
+    void setDescriptionByTasks(QLineEdit* descLine);
+
+    void setDateToday();
 
     void updateTasks();
+
+    void addTasks();
 
 private:
     Ui::ChangeTask *ui;

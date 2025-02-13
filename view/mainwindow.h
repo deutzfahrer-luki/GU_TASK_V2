@@ -24,6 +24,10 @@ private slots:
     void DeleteTask_clicked();
     void ChangeTask_clicked();
 
+    void on_reateTask_triggered();
+
+    void on_actiondeleteTask_triggered();
+
 private:
     Ui::MainWindow *ui;
     TaskTableModel *m_model; 

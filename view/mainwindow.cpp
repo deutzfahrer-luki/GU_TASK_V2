@@ -12,12 +12,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     m_model->setTasks(tasks);
 
     ui->setupUi(this);
-
+/*
     ui->tableView->setModel(m_model);
     connect(ui->AddTaskButton, &QPushButton::clicked, this, &MainWindow::AddTaskButton_clicked);
     connect(ui->AddUserButton, &QPushButton::clicked, this, &MainWindow::AddUserButton_clicked);
     connect(ui->DeleteTaskButton, &QPushButton::clicked, this, &MainWindow::DeleteTask_clicked);
     connect(ui->ChangeTaskButton, &QPushButton::clicked, this, &MainWindow::ChangeTask_clicked);
+*/
 }
 
 MainWindow::~MainWindow()
@@ -80,3 +81,15 @@ long MainWindow::getTaskIndexId()
         return -1;
     }
 }
+
+void MainWindow::on_reateTask_triggered()
+{
+
+}
+
+
+void MainWindow::on_actiondeleteTask_triggered()
+{
+
+}
+

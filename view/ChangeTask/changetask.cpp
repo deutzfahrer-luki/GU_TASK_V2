@@ -8,7 +8,6 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
 {
     ui->setupUi(this);
 
-
     if (indexTask>=0) // Change Task
     {
         indexTask_ = indexTask;
@@ -31,8 +30,6 @@ ChangeTask::ChangeTask(QWidget *parent, long indexTask)
     }
 
     connect(ui->buttonBoxEnter, &QDialogButtonBox::accepted, this, &ChangeTask::reject);
-
-
 }
 
 ChangeTask::~ChangeTask()
@@ -97,16 +94,13 @@ void ChangeTask::setDateToday(){
 }
 
 void ChangeTask::updateTasks(){
-    // Description changing
     std::string description = ui->DescLine->text().toStdString();
     tasks[indexTask_].setDescription(description);
 
-    // Date changing
     QDate date = ui->dateEdit->date();
     std::string dueDate = date.toString("yyyy-MM-dd").toStdString();
     tasks[indexTask_].setDue(Date(dueDate));
 
-    // User changing
     QString user = ui->comboBoxUser->currentText();
     long indexUsers = getIndexOfUsers(user.toStdString());
 
